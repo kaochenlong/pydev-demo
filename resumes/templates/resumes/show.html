@@ -8,4 +8,7 @@
     {{ resume.content }}
   </p>
 </article>
+<footer>
+  <a href="{% url 'resumes:edit' resume.id %}">編輯</a>
+</footer>
 {% endblock %}

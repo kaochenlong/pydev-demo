@@ -28,8 +28,27 @@ def new(request):
 def show(request, id):
     resume = get_object_or_404(Resume, id=id)
 
+    if request.POST:
+        # 更新
+        resume.title = request.POST.get("title")
+        resume.skill = request.POST.get("skill")
+        resume.content = request.POST.get("content")
+        resume.save()
+
+        return redirect("resumes:index")
+
     return render(
         request,
         "resumes/show.html",
+        {"resume": resume},
+    )
+
+
+def edit(request, id):
+    resume = get_object_or_404(Resume, id=id)
+
+    return render(
+        request,
+        "resumes/edit.html",
         {"resume": resume},
     )

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Resume
+from django.contrib import messages
 
 
 def index(request):
@@ -9,6 +10,8 @@ def index(request):
         resume.skill = request.POST.get("skill")
         resume.content = request.POST.get("content")
         resume.save()
+
+        messages.success(request, "新增成功")
 
         return redirect("resumes:index")
 
@@ -35,6 +38,8 @@ def show(request, id):
         resume.content = request.POST.get("content")
         resume.save()
 
+        messages.success(request, "更新成功")
+
         return redirect("resumes:index")
 
     return render(
@@ -60,6 +65,7 @@ def delete(request, id):
     if request.POST:
         # 刪除
         resume.delete()
+        messages.success(request, "刪除成功")
         return redirect("resumes:index")
 
     return render(

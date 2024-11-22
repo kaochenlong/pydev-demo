@@ -6,7 +6,11 @@
 
 <ul>
 {% for resume in resumes %}
-  <li>{{ resume.title }}</li>
+  <li>
+    <a href="{% url 'resumes:show' resume.id %}">
+      {{ resume.title }}
+    </a>
+  </li>
 {% endfor %}
 </ul>
 

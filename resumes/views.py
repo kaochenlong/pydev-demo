@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Resume
 
 
@@ -23,3 +23,13 @@ def index(request):
 
 def new(request):
     return render(request, "resumes/new.html")
+
+
+def show(request, id):
+    resume = get_object_or_404(Resume, id=id)
+
+    return render(
+        request,
+        "resumes/show.html",
+        {"resume": resume},
+    )

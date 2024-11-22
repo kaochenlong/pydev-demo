@@ -1,0 +1,11 @@
+{% extends "shared/layout.html" %}
+
+{% block "content" %}
+<h1>{{ resume.title }}</h1>
+<h3>{{ resume.skill }}</h3>
+<article>
+  <p>
+    {{ resume.content }}
+  </p>
+</article>
+{% endblock %}

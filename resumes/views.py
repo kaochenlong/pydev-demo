@@ -52,3 +52,18 @@ def edit(request, id):
         "resumes/edit.html",
         {"resume": resume},
     )
+
+
+def delete(request, id):
+    resume = get_object_or_404(Resume, id=id)
+
+    if request.POST:
+        # 刪除
+        resume.delete()
+        return redirect("resumes:index")
+
+    return render(
+        request,
+        "resumes/delete.html",
+        {"resume": resume},
+    )

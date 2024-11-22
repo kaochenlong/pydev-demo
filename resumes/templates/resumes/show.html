@@ -10,5 +10,7 @@
 </article>
 <footer>
   <a href="{% url 'resumes:edit' resume.id %}">編輯</a>
+  |
+  <a href="{% url 'resumes:delete' resume.id %}">刪除</a>
 </footer>
 {% endblock %}

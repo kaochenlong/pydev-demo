@@ -3,4 +3,11 @@
 {% block "content" %}
 <h1>Resume</h1>
 <a href="{% url 'resumes:new' %}">新增 resume</a>
+
+<ul>
+{% for resume in resumes %}
+  <li>{{ resume.title }}</li>
+{% endfor %}
+</ul>
+
 {% endblock %}

@@ -2,4 +2,21 @@
 
 {% block "content" %}
 <h1>新增 Resume</h1>
+
+<form method="POST" action="{% url 'resumes:index' %}">
+
+  {% csrf_token %}
+
+  title: <br />
+  <input type="text" name="title" /> <br />
+
+  skill: <br />
+  <input type="text" name="skill" /><br />
+
+  content:<br />
+  <textarea name="content"></textarea>
+  <br />
+  <button>新增</button>
+</form>
+
 {% endblock %}

@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+
+class Resume(models.Model):
+    title = models.CharField(max_length=100)
+    skill = models.CharField(max_length=300, null=True)
+    content = models.TextField(null=True)

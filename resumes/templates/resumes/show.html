@@ -13,4 +13,12 @@
   |
   <a href="{% url 'resumes:delete' resume.id %}">刪除</a>
 </footer>
+
+<section>
+  <form method="POST" action="{% url 'resumes:comments' resume.id %}">
+    {% csrf_token %}
+    <textarea name="content"></textarea>
+    <button>新增留言</button>
+  </form>
+</section>
 {% endblock %}

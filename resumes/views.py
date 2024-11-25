@@ -1,18 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Resume
 from django.contrib import messages
+from .forms import ResumeForm
 
 
 def index(request):
     if request.POST:
-        resume = Resume()
-        resume.title = request.POST.get("title")
-        resume.skill = request.POST.get("skill")
-        resume.content = request.POST.get("content")
-        resume.save()
+        form = ResumeForm(request.POST)
+        form.save()
 
         messages.success(request, "新增成功")
-
         return redirect("resumes:index")
 
     # 讀取 resume 列表
@@ -33,13 +30,10 @@ def show(request, id):
 
     if request.POST:
         # 更新
-        resume.title = request.POST.get("title")
-        resume.skill = request.POST.get("skill")
-        resume.content = request.POST.get("content")
-        resume.save()
+        form = ResumeForm(request.POST, instance=resume)
+        form.save()
 
         messages.success(request, "更新成功")
-
         return redirect("resumes:index")
 
     return render(

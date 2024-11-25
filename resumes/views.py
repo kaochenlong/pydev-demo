@@ -41,10 +41,15 @@ def show(request, id):
         messages.success(request, "更新成功")
         return redirect("resumes:index")
 
+    comments = resume.comment_set.order_by("-id").all()
+
     return render(
         request,
         "resumes/show.html",
-        {"resume": resume},
+        {
+            "resume": resume,
+            "comments": comments,
+        },
     )
 
 

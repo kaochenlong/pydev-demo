@@ -11,9 +11,8 @@ def index(request, id):
     resume = get_object_or_404(Resume, id=id)
 
     # 新增 comment
-    comment = Comment()
-    comment.content = request.POST.get("content")
-    comment.resume_id = resume.id
+    content = request.POST.get("content")
+    comment = resume.comment_set.create(content=content)
     comment.save()
 
     messages.success(request, "新增留言成功")

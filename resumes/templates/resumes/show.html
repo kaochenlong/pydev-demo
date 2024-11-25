@@ -8,6 +8,7 @@
     {{ resume.content }}
   </p>
 </article>
+
 <footer>
   <a href="{% url 'resumes:edit' resume.id %}">編輯</a>
   |
@@ -21,4 +22,13 @@
     <button>新增留言</button>
   </form>
 </section>
+
+<ul>
+{% for comment in comments %}
+  <li>
+    {{ comment.content|linebreaks }}
+    {{ comment.created_at }}
+  </li>
+{% endfor %}
+</ul>
 {% endblock %}

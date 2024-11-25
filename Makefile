@@ -8,4 +8,4 @@ migrate:
 
 .PHONY: shell
 shell:
-	poetry run python manage.py shell
+	poetry run python manage.py shell_plus

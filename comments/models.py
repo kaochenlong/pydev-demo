@@ -16,6 +16,9 @@ class Comment(models.Model):
 
     objects = CommentManager()
 
+    def __str__(self):
+        return self.content
+
     def delete(self):
         self.deleted_at = timezone.now()
         self.save()

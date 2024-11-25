@@ -27,6 +27,10 @@
 {% for comment in comments %}
   <li>
     {{ comment.content|linebreaks }}
+    <form method="POST" action="{% url 'comments:delete' comment.id %}">
+      {% csrf_token %}
+      <button>刪</button>
+    </form>
     {{ comment.created_at }}
   </li>
 {% endfor %}

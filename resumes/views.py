@@ -22,7 +22,12 @@ def index(request):
 
 
 def new(request):
-    return render(request, "resumes/new.html")
+    form = ResumeForm()
+    return render(
+        request,
+        "resumes/new.html",
+        {"form": form},
+    )
 
 
 def show(request, id):
@@ -45,11 +50,15 @@ def show(request, id):
 
 def edit(request, id):
     resume = get_object_or_404(Resume, id=id)
+    form = ResumeForm(instance=resume)
 
     return render(
         request,
         "resumes/edit.html",
-        {"resume": resume},
+        {
+            "resume": resume,
+            "form": form,
+        },
     )
 
 

@@ -4,20 +4,9 @@
 <h1>編輯 Resume</h1>
 
 <form method="POST" action="{% url 'resumes:show' resume.id %}">
-
   {% csrf_token %}
+  {{ form.as_p }}
 
-  title: <br />
-  <input type="text" name="title" value="{{ resume.title }}" /> <br />
-
-  skill: <br />
-  <input type="text" name="skill" value="{{ resume.skill }}" /><br />
-
-  location: <br />
-  <input type="text" name="location" value="{{ resume.location }}" /><br />
-
-  content:<br />
-  <textarea name="content">{{ resume.content }}</textarea>
   <br />
   <button>更新</button>
 </form>

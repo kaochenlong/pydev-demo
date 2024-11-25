@@ -4,20 +4,9 @@
 <h1>新增 Resume</h1>
 
 <form method="POST" action="{% url 'resumes:index' %}">
-
   {% csrf_token %}
+  {{ form.as_p }}
 
-  title: <br />
-  <input type="text" name="title" /> <br />
-
-  skill: <br />
-  <input type="text" name="skill" /><br />
-
-  location: <br />
-  <input type="text" name="location" /><br />
-
-  content:<br />
-  <textarea name="content"></textarea>
   <br />
   <button>新增</button>
 </form>

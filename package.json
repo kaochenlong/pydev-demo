@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "esbuild frontend/scripts/app.js --bundle --outfile=static/scripts/app.js --watch",
+    "build": "esbuild frontend/scripts/app.js --bundle --outfile=static/scripts/app.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}

@@ -6,4 +6,5 @@ urlpatterns = [
     path("", include("pages.urls")),
     path("resumes/", include("resumes.urls")),
     path("comments/", include("comments.urls")),
+    path("users/", include("users.urls")),
 ]

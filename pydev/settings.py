@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "pages",
     "resumes",
     "comments",
+    "users",
 ]
 
 MIDDLEWARE = [

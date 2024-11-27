@@ -16,23 +16,18 @@
 </footer>
 
 <section>
-  <form method="POST" action="{% url 'resumes:comments' resume.id %}">
+  <form hx-target="#comment-list"
+        hx-swap="afterbegin"
+        hx-post="{% url 'resumes:comments' resume.id %}">
     {% csrf_token %}
     <textarea name="content"></textarea>
     <button>新增留言</button>
   </form>
 </section>
 
-<ul>
+<ul id="comment-list">
 {% for comment in comments %}
-  <li>
-    {{ comment.content|linebreaks }}
-    <form method="POST" action="{% url 'comments:delete' comment.id %}">
-      {% csrf_token %}
-      <button>刪</button>
-    </form>
-    {{ comment.created_at }}
-  </li>
+  {% include "comments/_comment.html" with comment=comment %}
 {% endfor %}
 </ul>
 {% endblock %}

@@ -1,8 +1,8 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_POST
 from resumes.models import Resume
-from django.contrib import messages
 from .models import Comment
+from django.http import HttpResponse
 
 
 @require_POST
@@ -15,8 +15,7 @@ def index(request, id):
     comment = resume.comment_set.create(content=content)
     comment.save()
 
-    messages.success(request, "新增留言成功")
-    return redirect("resumes:show", id=resume.id)
+    return render(request, "comments/_comment.html", {"comment": comment})
 
 
 @require_POST
@@ -24,5 +23,4 @@ def delete(request, id):
     comment = get_object_or_404(Comment, id=id)
     comment.delete()
 
-    messages.success(request, "留言已刪除")
-    return redirect("resumes:show", id=comment.resume.id)
+    return HttpResponse("")

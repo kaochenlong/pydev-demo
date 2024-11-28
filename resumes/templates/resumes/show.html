@@ -10,18 +10,22 @@
 </article>
 
 <footer>
-  <a href="{% url 'resumes:edit' resume.id %}">編輯</a>
-  |
-  <a href="{% url 'resumes:delete' resume.id %}">刪除</a>
+  <a href="{% url 'resumes:edit' resume.id %}" class="btn btn-sm">編輯</a>
+  <a href="{% url 'resumes:delete' resume.id %}" class="btn btn-sm">刪除</a>
 </footer>
 
 <section>
-  <form hx-target="#comment-list"
+  <form class="flex flex-col gap-2"
+        hx-target="#comment-list"
         hx-swap="afterbegin"
         hx-post="{% url 'resumes:comments' resume.id %}">
     {% csrf_token %}
-    <textarea name="content"></textarea>
-    <button>新增留言</button>
+    <div class="form-control">
+      <textarea name="content" class="textarea textarea-bordered"></textarea>
+    </div>
+    <div>
+      <button class="btn btn-md btn-primary">新增留言</button>
+    </div>
   </form>
 </section>
 

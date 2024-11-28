@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html data-theme="lofi" lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 <body>
   {% include "shared/flash.html" %}
   {% include "shared/navbar.html" %}
-  <main class="container mx-auto">
+  <main class="container py-4 mx-auto">
     {% block "content" %}{% endblock %}
   </main>
 </body>

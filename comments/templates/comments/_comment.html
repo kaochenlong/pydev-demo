@@ -1,11 +1,11 @@
 <li>
-  {{ comment.content|linebreaks }}
+  <p>{{ comment.content|linebreaks }}</p>
   <form hx-target="closest li"
         hx-swap="outerHTML"
         hx-confirm="確認刪除？"
         hx-post="{% url 'comments:delete' comment.id %}">
     {% csrf_token %}
-    <button>刪</button>
+    <button class="btn btn-xs btn-primary">刪除</button>
   </form>
-  {{ comment.created_at }}
+  <span class="text-sm">{{ comment.created_at }}</span>
 </li>

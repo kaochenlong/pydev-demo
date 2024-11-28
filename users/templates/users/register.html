@@ -1,20 +1,23 @@
 {% extends "shared/layout.html" %}
 
 {% block "content" %}
-<form method="POST" class="mt-2">
+<h1 class="text-3xl">註冊</h1>
+<form method="POST" class="flex flex-col gap-2">
   {% csrf_token %}
-  <div>
+  <div class="form-control">
     <label>Email</label>
-    <input type="email" class="border border-black" name="email" />
+    <input type="email" class="w-full max-w-xs input input-bordered" name="email" />
   </div>
-  <div>
+  <div class="form-control">
     <label>Password</label>
-    <input type="password" class="border border-black" name="password" />
+    <input type="password" class="w-full max-w-xs input input-bordered" name="password" />
+  </div>
+  <div class="form-control">
+    <label>Password 確認</label>
+    <input type="password" class="w-full max-w-xs input input-bordered" name="password_confirm" />
   </div>
   <div>
-    <label>Password 確認</label>
-    <input type="password" class="border border-black" name="password_confirm" />
+    <button class="btn btn-primary">註冊</button>
   </div>
-  <button class="bg-red-500 text-2xl px-3 py-1 text-white rounded hover:bg-red-400">註冊</button>
 </form>
 {% endblock %}

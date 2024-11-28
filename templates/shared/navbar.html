@@ -1,10 +1,11 @@
-<nav class="bg-black text-white shadow text-xl py-4 px-6 flex justify-between">
-  <ul>
-    <li><a href="{% url "pages:home" %}">PyDev</a></li>
-  </ul>
-
-  <ul class="flex gap-4">
-    <li><a href="{% url "users:login" %}">登入</a></li>
-    <li><a href="{% url "users:register" %}">註冊</a></li>
-  </ul>
-</nav>
+<div class="navbar bg-neutral text-neutral-content">
+  <div class="flex-1">
+    <a href="{% url "pages:home" %}" class="text-xl btn btn-ghost">PyDev</a>
+  </div>
+  <div class="flex-none">
+    <ul class="px-1 menu menu-horizontal">
+      <li><a href="{% url "users:login" %}">登入</a></li>
+      <li><a href="{% url "users:register" %}">註冊</a></li>
+    </ul>
+  </div>
+</div>

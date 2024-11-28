@@ -18,7 +18,16 @@ def index(request):
         return redirect("resumes:index")
 
     # 讀取 resume 列表
-    resumes = Resume.objects.filter(user=request.user).order_by("-id")
+    resumes = request.user.resume_set.order_by("-id")
+    return render(
+        request,
+        "resumes/index.html",
+        {"resumes": resumes},
+    )
+
+
+def list(request):
+    resumes = Resume.objects.order_by("-id")
     return render(
         request,
         "resumes/index.html",
@@ -37,7 +46,7 @@ def new(request):
 
 
 def show(request, id):
-    resume = get_object_or_404(Resume, id=id)
+    resume = get_object_or_404(Resume, id=id, user=request.user)
 
     if request.POST:
         # 更新
@@ -61,7 +70,7 @@ def show(request, id):
 
 @login_required
 def edit(request, id):
-    resume = get_object_or_404(Resume, id=id)
+    resume = get_object_or_404(Resume, id=id, user=request.user)
     form = ResumeForm(instance=resume)
 
     return render(
@@ -76,10 +85,9 @@ def edit(request, id):
 
 @login_required
 def delete(request, id):
-    resume = get_object_or_404(Resume, id=id)
+    resume = get_object_or_404(Resume, id=id, user=request.user)
 
     if request.POST:
-        # 刪除
         resume.delete()
         messages.success(request, "刪除成功")
         return redirect("resumes:index")
@@ -88,4 +96,19 @@ def delete(request, id):
         request,
         "resumes/delete.html",
         {"resume": resume},
+    )
+
+
+def public(request, id):
+    resume = get_object_or_404(Resume, id=id)
+
+    comments = resume.comment_set.all()
+
+    return render(
+        request,
+        "resumes/show.html",
+        {
+            "resume": resume,
+            "comments": comments,
+        },
     )

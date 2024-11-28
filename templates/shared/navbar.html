@@ -4,6 +4,9 @@
   </div>
   <div class="flex-none">
     <ul class="px-1 menu menu-horizontal">
+      <li>
+        <a href="{% url "resumes:list" %}">公開履歷</a>
+      </li>
       {% if user.is_authenticated %}
         <li><a>{{ user.username }}</a></li>
         <li><a hx-post="{% url "users:logout" %}">登出</a></li>

@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Resume
+from .models import Resume, FavoriteResume
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from .forms import ResumeForm
 
 
@@ -57,6 +58,7 @@ def show(request, id):
         return redirect("resumes:index")
 
     comments = resume.comment_set.all()
+    favorited = resume.favorite_users.filter(id=request.user.id).first()
 
     return render(
         request,
@@ -64,6 +66,7 @@ def show(request, id):
         {
             "resume": resume,
             "comments": comments,
+            "favorited": favorited,
         },
     )
 
@@ -112,3 +115,24 @@ def public(request, id):
             "comments": comments,
         },
     )
+
+
+@require_POST
+@login_required
+def like(request, id):
+    resume = get_object_or_404(Resume, id=id)
+
+    favorite = resume.favorite_users.filter(id=request.user.id).first()
+
+    if favorite:
+        FavoriteResume.objects.get(
+            user=request.user,
+            resume=resume,
+        ).delete()
+    else:
+        FavoriteResume(
+            user=request.user,
+            resume=resume,
+        ).save()
+
+    return redirect("resumes:show", id=resume.id)

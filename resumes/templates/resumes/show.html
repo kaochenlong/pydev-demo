@@ -2,13 +2,15 @@
 
 {% block "content" %}
 
-POST /resumes/2/like
-
-<form method="POST" action="/??">
+<form method="POST" action="{% url 'resumes:like' resume.id %}">
   {% csrf_token %}
-<button class="btn btn-sm">
-  <img src="/static/svg/heart-off.svg" />
-</button>
+  <button class="btn btn-sm">
+    {% if favorited %}
+      <img src="/static/svg/heart-on.svg" />
+    {% else %}
+      <img src="/static/svg/heart-off.svg" />
+    {% endif %}
+  </button>
 </form>
 
 <h1>{{ resume.title }}</h1>

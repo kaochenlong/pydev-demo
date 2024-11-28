@@ -86,6 +86,7 @@ def edit(request, id):
     )
 
 
+@require_POST
 @login_required
 def delete(request, id):
     resume = get_object_or_404(Resume, id=id, user=request.user)
@@ -104,7 +105,6 @@ def delete(request, id):
 
 def public(request, id):
     resume = get_object_or_404(Resume, id=id)
-
     comments = resume.comment_set.all()
 
     return render(
@@ -119,20 +119,15 @@ def public(request, id):
 
 @require_POST
 @login_required
-def like(request, id):
+def toggle_favorite(request, id):
     resume = get_object_or_404(Resume, id=id)
 
-    favorite = resume.favorite_users.filter(id=request.user.id).first()
+    favorite, created = FavoriteResume.objects.get_or_create(
+        user=request.user,
+        resume=resume,
+    )
 
-    if favorite:
-        FavoriteResume.objects.get(
-            user=request.user,
-            resume=resume,
-        ).delete()
-    else:
-        FavoriteResume(
-            user=request.user,
-            resume=resume,
-        ).save()
+    if not created:
+        favorite.delete()
 
     return redirect("resumes:show", id=resume.id)

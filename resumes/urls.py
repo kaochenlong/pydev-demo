@@ -13,5 +13,5 @@ urlpatterns = [
     path("<int:id>/delete", views.delete, name="delete"),
     path("<int:id>/comments", comment_views.index, name="comments"),
     path("<int:id>/public", views.public, name="public"),
-    path("<int:id>/like", views.like, name="like"),
+    path("<int:id>/like", views.toggle_favorite, name="like"),
 ]

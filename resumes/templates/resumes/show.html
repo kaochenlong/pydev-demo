@@ -1,6 +1,16 @@
 {% extends "shared/layout.html" %}
 
 {% block "content" %}
+
+POST /resumes/2/like
+
+<form method="POST" action="/??">
+  {% csrf_token %}
+<button class="btn btn-sm">
+  <img src="/static/svg/heart-off.svg" />
+</button>
+</form>
+
 <h1>{{ resume.title }}</h1>
 <h3>{{ resume.skill }}</h3>
 <article>
@@ -17,14 +27,17 @@
 <section>
   <form class="flex flex-col gap-2"
         hx-target="#comment-list"
+        x-data="comment_form"
         hx-swap="afterbegin"
         hx-post="{% url 'resumes:comments' resume.id %}">
     {% csrf_token %}
     <div class="form-control">
-      <textarea name="content" class="textarea textarea-bordered"></textarea>
+      <textarea x-model="content" name="content" class="textarea textarea-bordered"></textarea>
     </div>
     <div>
-      <button disabled class="btn btn-md btn-primary">新增留言</button>
+      <button x-ref="btn" class="btn btn-md btn-primary">
+        新增留言
+      </button>
     </div>
   </form>
 </section>

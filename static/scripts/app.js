@@ -6855,11 +6855,8 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
   var module_default = src_default;
 
   // frontend/scripts/app.js
-  window.Alpine = module_default;
-  module_default.start();
   module_default.data("comment_form", () => ({
-    init() {
-      console.log(123);
-    }
+    content: ""
   }));
+  module_default.start();
 })();

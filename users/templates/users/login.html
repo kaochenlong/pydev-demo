@@ -2,4 +2,18 @@
 
 {% block "content" %}
 <h1 class="text-3xl">登入</h1>
+<form method="POST" class="flex flex-col gap-2">
+  {% csrf_token %}
+  <div class="form-control">
+    <label>Username</label>
+    <input type="text" class="w-full max-w-xs input input-bordered" name="username" />
+  </div>
+  <div class="form-control">
+    <label>Password</label>
+    <input type="password" class="w-full max-w-xs input input-bordered" name="password" />
+  </div>
+  <div>
+    <button class="btn btn-primary">登入</button>
+  </div>
+</form>
 {% endblock %}

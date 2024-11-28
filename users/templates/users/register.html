@@ -2,19 +2,26 @@
 
 {% block "content" %}
 <h1 class="text-3xl">註冊</h1>
+
+
+
 <form method="POST" class="flex flex-col gap-2">
   {% csrf_token %}
+  <div class="form-control">
+    <label>Username</label>
+    <input type="text" class="w-full max-w-xs input input-bordered" name="username" />
+  </div>
   <div class="form-control">
     <label>Email</label>
     <input type="email" class="w-full max-w-xs input input-bordered" name="email" />
   </div>
   <div class="form-control">
     <label>Password</label>
-    <input type="password" class="w-full max-w-xs input input-bordered" name="password" />
+    <input type="password" class="w-full max-w-xs input input-bordered" name="password1" />
   </div>
   <div class="form-control">
     <label>Password 確認</label>
-    <input type="password" class="w-full max-w-xs input input-bordered" name="password_confirm" />
+    <input type="password" class="w-full max-w-xs input input-bordered" name="password2" />
   </div>
   <div>
     <button class="btn btn-primary">註冊</button>

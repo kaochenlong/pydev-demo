@@ -1,8 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login as login_user
+from django.contrib.auth import authenticate, login as login_user, logout as logout_user
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.views.decorators.http import require_POST
 
 
 def login(request):
@@ -39,5 +41,9 @@ def register(request):
     return render(request, "users/register.html")
 
 
+@require_POST
+@login_required
 def logout(request):
-    pass
+    logout_user(request)
+    messages.success(request, "已登出")
+    return redirect("pages:home")

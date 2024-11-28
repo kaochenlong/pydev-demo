@@ -8,7 +8,7 @@
   <script src="{% static "scripts/app.js" %}" type="module"></script>
   <link rel="stylesheet" href="{% static "styles/app.css" %}" />
 </head>
-<body>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
   {% include "shared/flash.html" %}
   {% include "shared/navbar.html" %}
   <main class="container py-4 mx-auto">

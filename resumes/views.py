@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
 
 from .forms import ResumeForm
 from .models import FavoriteResume, Resume
@@ -57,7 +58,7 @@ def show(request, id):
         messages.success(request, "更新成功")
         return redirect("resumes:index")
 
-    comments = resume.comment_set.all()
+    comments = resume.comment_set.prefetch_related("user")
     favorited = resume.favorite_users.filter(id=request.user.id).first()
 
     return render(

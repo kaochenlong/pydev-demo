@@ -1,4 +1,5 @@
 <li>
+  <span class="font-bold">{{ comment.user.username }}</span>
   <p>{{ comment.content|linebreaks }}</p>
   <form hx-target="closest li"
         hx-swap="outerHTML"

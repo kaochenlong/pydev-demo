@@ -20,11 +20,17 @@ def index(request):
         return redirect("resumes:index")
 
     # 讀取 resume 列表
+    keyword = request.GET.get("keyword", "")
+
     resumes = request.user.resume_set.order_by("-id")
+
+    if keyword:
+        resumes = resumes.filter(title__icontains=keyword)
+
     return render(
         request,
         "resumes/index.html",
-        {"resumes": resumes},
+        {"resumes": resumes, "keyword": keyword},
     )
 
 

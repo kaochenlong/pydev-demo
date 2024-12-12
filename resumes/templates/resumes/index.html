@@ -2,6 +2,11 @@
 
 {% block "content" %}
 
+<form>
+  <input type="text" class="input input-bordered" value="{{ keyword }}" name="keyword" />
+  <button class="btn btn-primary">search</button>
+</form>
+
 {% if user.is_authenticated %}
   <h1 class="text-3xl">個人履歷</h1>
   <a href="{% url 'resumes:new' %}" class="btn btn-primary">新增 resume</a>

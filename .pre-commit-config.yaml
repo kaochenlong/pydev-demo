@@ -1,0 +1,18 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    - id: trailing-whitespace
+      name: 去除空白
+
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+    - id: black
+      name: 自動格式化
+
+  - repo: https://github.com/pycqa/isort
+    rev: "5.13.2"
+    hooks:
+      - id: isort
+        name: 修正：套件 import 順序

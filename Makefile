@@ -9,3 +9,7 @@ migrate:
 .PHONY: shell
 shell:
 	poetry run python manage.py shell_plus
+
+.PHONY: precommit
+precommit:
+	poetry run pre-commit

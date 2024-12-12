@@ -1,6 +1,8 @@
 from django.urls import path
-from . import views
+
 from comments import views as comment_views
+
+from . import views
 
 app_name = "resumes"
 

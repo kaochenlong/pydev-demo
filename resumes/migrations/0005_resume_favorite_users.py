@@ -7,14 +7,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resumes', '0004_favoriteresume'),
+        ("resumes", "0004_favoriteresume"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='resume',
-            name='favorite_users',
-            field=models.ManyToManyField(related_name='favorited_resumes', through='resumes.FavoriteResume', to=settings.AUTH_USER_MODEL),
+            model_name="resume",
+            name="favorite_users",
+            field=models.ManyToManyField(
+                related_name="favorited_resumes",
+                through="resumes.FavoriteResume",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

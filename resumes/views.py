@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Resume, FavoriteResume
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404, redirect, render
+
 from .forms import ResumeForm
+from .models import FavoriteResume, Resume
 
 
 @login_required

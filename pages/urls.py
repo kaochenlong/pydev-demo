@@ -1,7 +1,8 @@
 from django.urls import path
 
-from .views import about, contact
 from resumes.views import index
+
+from .views import about, contact
 
 app_name = "pages"
 

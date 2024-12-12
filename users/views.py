@@ -1,9 +1,11 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login as login_user, logout as logout_user
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as login_user
+from django.contrib.auth import logout as logout_user
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
 
 

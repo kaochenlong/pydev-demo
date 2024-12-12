@@ -1,6 +1,7 @@
 from django.db import models
-from resumes.models import Resume
 from django.utils import timezone
+
+from resumes.models import Resume
 
 
 class CommentManager(models.Manager):

@@ -9,17 +9,30 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('resumes', '0002_resume_location'),
+        ("resumes", "0002_resume_location"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Comment',
+            name="Comment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('content', models.TextField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('resume', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='resumes.resume')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("content", models.TextField()),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "resume",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="resumes.resume"
+                    ),
+                ),
             ],
         ),
     ]

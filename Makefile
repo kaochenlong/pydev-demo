@@ -13,3 +13,7 @@ shell:
 .PHONY: precommit
 precommit:
 	poetry run pre-commit
+
+.PHONY: commit
+commit:
+	poetry run cz commit
